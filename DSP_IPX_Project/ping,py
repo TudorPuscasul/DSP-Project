@@ -1,0 +1,12 @@
+import numpy as np
+from scipy.io.wavfile import write
+
+fs = 44100
+duration = 5
+f1, f2 = 1000, 1500
+amplitude = 0.5
+t = np.linspace(0, duration, int(fs * duration), endpoint=False)
+signal = amplitude * (np.sin(2 * np.pi * f1 * t) + np.sin(2 * np.pi * f2 * t))
+
+write("two_tone_signal.wav", fs, (signal * 32767).astype(np.int16))
+print("Two-tone signal generated and saved as 'two_tone_signal.wav'")
